@@ -1,13 +1,18 @@
-function evenCheck(){
-    let userInput=prompt("Pick a number");
-    x=Math.sqrt()
-    if((userInput*userInput)%2==0){
-        document.writeln("<div class=header>"+"החזקה של המספר שלך מספר זוגי"+"</div>")    
-    }
-    else{
-        document.writeln("<div class=header>"+"החזקה של המספר שלכם אינה מספר זוגי"+"</div>")            
+const grid=document.getElementById("grid");
+const scoreDisplay=document.getElementById("score");
+let squares=[];
+let currentSnake=[2,1,0]
+let direction=1;
+let appleIndex=0;
+let score=0;
+let timerId=0;
+let intervelTime=200
+
+function createBoard(){
+    for(let i=0; i<400;i++){
+        const square =document.createElement("div");
+        grid.appendChild(square);
+        squares.push(square);
     }
 }
-//evenCheck()
-
-let grid=document.getElementById("grid")
+createBoard()
