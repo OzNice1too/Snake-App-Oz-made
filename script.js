@@ -2,10 +2,10 @@ function evenCheck(){
     let userInput=prompt("Pick a number");
     x=Math.sqrt()
     if((userInput*userInput)%2==0){
-        document.writeln("<div class=header>"+"the power of 2 of your number is even"+"</div>")    
+        document.writeln("<div class=header>"+"החזקה של המספר שלך מספר זוגי"+"</div>")    
     }
     else{
-        document.writeln("<div class=header>"+"the power of 2 of your number is odd"+"</div>")            
+        document.writeln("<div class=header>"+"החזקה של המספר שלכם אינה מספר זוגי"+"</div>")            
     }
 }
 evenCheck()
