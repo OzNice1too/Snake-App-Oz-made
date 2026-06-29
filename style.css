@@ -1,0 +1,22 @@
+body{
+    background-color: #ffe4c4;
+
+}
+
+
+.gameContainer{
+    text-align: center;
+    color: #2B5748;
+    font-size: 3em;
+    font-weight: 600;
+}
+
+.header{
+    color: red;
+    text-align: center;
+    font-size: 72px;
+    font-weight: 700;
+    font-style: oblique;
+    text-shadow: 6px 4px 0px royalblue;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}
