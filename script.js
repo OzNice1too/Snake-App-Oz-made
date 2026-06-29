@@ -8,4 +8,6 @@ function evenCheck(){
         document.writeln("<div class=header>"+"החזקה של המספר שלכם אינה מספר זוגי"+"</div>")            
     }
 }
-evenCheck()
+//evenCheck()
+
+let grid=document.getElementById("grid")
