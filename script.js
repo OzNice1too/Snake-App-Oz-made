@@ -1,7 +1,7 @@
 const grid=document.getElementById("grid");
 const scoreDisplay=document.getElementById("score");
 let squares=[];
-let currentSnake=[2,1,0]
+let currentSnake=[11,12,13]
 let direction=1;
 let appleIndex=0;
 let score=0;
