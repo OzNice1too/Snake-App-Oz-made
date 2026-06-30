@@ -24,12 +24,26 @@ function startGame(){
     clearInterval(timerId)
 }
 
-function hitCheck(){
+function move(){
+    //removes the tail
+
+    let tail = currentSnake.pop();
+    squares[tail].classList.remove("snake");
+
+    //creates a new head in front of the current head to mimic movement
+
+    let newHead = currentSnake[0] + direction;
+    currentSnake.unshift(newHead);
+    squares[newHead].classList.add("snake");
+
+    //checks for being hit
+
     const hitBottom = (currentSnake[0]>=380 && direction === 20);
     const hitRight = (currentSnake[0] % 20 === 19 && direction === 1);
     const hitLeft = (currentSnake[0] % 20 === 0 && direction=== -1);
     const hitTop = (currentSnake[0] < 20 && direction === -20);
     const hitSelf = squares[currentSnake[0]+direction]?.classList.containts("snake");
+
 }
 
 function generApple(){
@@ -41,14 +55,15 @@ function generApple(){
 
 function changeDir(inputedDir){
     if (direction + inputedDir !== 0){
-        direction == inputedDir;
+        direction = inputedDir;
     }
 }
 
 document.addEventListener("keydown", (e) => {
-    if (e.key === "arrowUp" || e.key === "w") changeDir(-20);
-    if (e.key === "arrowDown" || e.key === "s") changeDir(20);
-    if (e.key === "arrowLeft" || e.key === "a") changeDir(-1);
-    if (e.key === "arrowRight" || e.key === "d") changeDir(1);
+    if (e.key === "w" ) changeDir(-20);
+    if (e.key === "s" ) changeDir(20);
+    if (e.key === "a" ) changeDir(-1);
+    if (e.key === "d" ) changeDir(1);
 });
 
+setInterval(move,200);
