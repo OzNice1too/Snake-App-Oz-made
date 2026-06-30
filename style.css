@@ -5,7 +5,7 @@ body{
     align-items: center;
     height: 100vh;
     background-color: #cf9956;
-    color: rgb(179, 77, 77);
+    color: #cf9956;
 
 }
 
@@ -26,13 +26,18 @@ body{
     box-shadow: 0 10px 25px rgba(0,0,0,0.1);
     text-align: center;
 }
+
+h2{
+    font-size: 65px;
+}
+
 #grid div{
     border: 3px solid ;
 }
 
 
-.snake{ background-color:rgb(52, 209, 21); border-radius: 2px;}
-.apple{ background-color: aquamarine;border-radius: 50%;}
+.snake{ background-color:rgb(52, 142, 216); border-radius: 2px;}
+.apple{ background-color: rgb(211, 44, 44);border-radius: 50%;}
 
 .controls{margin: 15px 0;}
 .arrow{width: 60px; height: 60px; font-size: 24px;font-weight: bold;margin: 4px; cursor: pointer;background-color: chocolate;border: 2px solid black; color: aliceblue; border-radius: 12px;}
