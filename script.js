@@ -23,6 +23,7 @@ createBoard()
 function startGame(){
     clearInterval(timerId)
     currentSnake.forEach(index => squares[index].classList.remove("snake"));
+    currentSnake.forEach(index => squares[index].classList.remove("head"));
     squares[appleIndex].classList.remove("apple");
     currentSnake = [2,1,0];
     score=0; direction=1; intervelTime=200;
@@ -35,6 +36,7 @@ function startGame(){
 
 function endGame(){
     clearInterval(timerId)
+    startGame()
 }
 
 function generApple(){
@@ -73,6 +75,15 @@ function move(){
         score++; 
         scoreDisplay.textContent = score;
         generApple();
+    document.addEventListener("touchstart", e => {
+        touchStartX=e.changedTouches[0].screenX;
+        touchStartY=e.changedTouches[0].screenY;
+    }, false)
+    document.addEventListener("touchend", e => {
+        touchEndX=e.changedTouches[0].screenX;
+        touchEndY=e.changedTouches[0].screenY;
+        handleSwipe()
+    }, false)
 
     }
 
@@ -82,6 +93,24 @@ function changeDir(inputedDir){
     if (direction + inputedDir !== 0){
         nextDirection = inputedDir;
     }
+}
+
+
+function handleSwipe(){
+    const dx = touchStartX - touchEndX;
+    const dy = touchStartY - touchEndY;
+
+    const absDx = Math.abs(dx);
+    const absDy = Math.abs(dy);
+
+    if (Math.max(absDx,absDy) > 30)
+        if (absDx > absDy){
+            if (dx > 0) changeDir(1);
+            else  changeDir(-1);
+        } else{
+            if(dy>0) changeDir(20);
+            else changeDir(-20)
+        }
 }
 
 document.addEventListener("keydown", (e) => {
