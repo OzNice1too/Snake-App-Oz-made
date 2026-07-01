@@ -22,6 +22,7 @@ createBoard()
 
 function startGame(){
     clearInterval(timerId)
+    direction=nextDirection;
     currentSnake.forEach(index => squares[index].classList.remove("snake"));
     currentSnake.forEach(index => squares[index].classList.remove("head"));
     squares[appleIndex].classList.remove("apple");
@@ -36,7 +37,7 @@ function startGame(){
 
 function endGame(){
     clearInterval(timerId)
-    startGame()
+    nextDirection=1
 }
 
 function generApple(){
@@ -103,14 +104,15 @@ function handleSwipe(){
     const absDx = Math.abs(dx);
     const absDy = Math.abs(dy);
 
-    if (Math.max(absDx,absDy) > 30)
+    if (Math.max(absDx,absDy) > 30){
         if (absDx > absDy){
-            if (dx > 0) changeDir(1);
-            else  changeDir(-1);
+            if (dx > 0) changeDir(-1);
+            else  changeDir(1);
         } else{
-            if(dy>0) changeDir(20);
-            else changeDir(-20)
+            if(dy>0) changeDir(-20);
+            else changeDir(20)
         }
+    }
 }
 
 document.addEventListener("keydown", (e) => {
