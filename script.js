@@ -1,12 +1,14 @@
 const grid=document.getElementById("grid");
 const scoreDisplay=document.getElementById("score");
 let squares=[];
-let currentSnake=[201,202,203]
+let currentSnake=[0,1,2]
 let direction=1;
 let appleIndex=0;
 let score=0;
 let timerId=0;
-let intervelTime=200
+let intervelTime=200;
+let nextDirection=1;
+let gameOn = false
 
 function createBoard(){
     for(let i=0; i<400;i++){
@@ -19,51 +21,78 @@ createBoard()
 
 
 function startGame(){
+    clearInterval(timerId)
     currentSnake.forEach(index => squares[index].classList.remove("snake"));
     squares[appleIndex].classList.remove("apple");
-    clearInterval(timerId)
+    currentSnake = [2,1,0];
+    score=0; direction=1; intervelTime=200;
+    scoreDisplay.textContent = score;
+    currentSnake.forEach(index => squares[index].classList.add("snake"));
+    squares[currentSnake[0]].classList.add("head");
+    generApple()
+    timerId = setInterval(move,intervelTime);
 }
 
-function move(){
-    //removes the tail
-
-    let tail = currentSnake.pop();
-    squares[tail].classList.remove("snake");
-
-    //creates a new head in front of the current head to mimic movement
-
-    let newHead = currentSnake[0] + direction;
-    currentSnake.unshift(newHead);
-    squares[newHead].classList.add("snake");
-
-    //checks for being hit
-
-    const hitBottom = (currentSnake[0]>=380 && direction === 20);
-    const hitRight = (currentSnake[0] % 20 === 19 && direction === 1);
-    const hitLeft = (currentSnake[0] % 20 === 0 && direction=== -1);
-    const hitTop = (currentSnake[0] < 20 && direction === -20);
-    const hitSelf = squares[currentSnake[0]+direction]?.classList.containts("snake");
-
+function endGame(){
+    clearInterval(timerId)
 }
 
 function generApple(){
     do{
-        appleIndex = Math.floor(Math.random()*squares.length);
-    }   while (squares[appleIndex].classList.containts("snake"));
+        appleIndex = Math.floor(Math.random()*squares.length);}
+    while (squares[appleIndex].classList.contains("snake"));
     squares[appleIndex].classList.add("apple");
+}
+
+function move(){
+    direction=nextDirection
+    const hitBottom = (currentSnake[0] + 20 >= 400 && direction === 20);
+    const hitRight = (currentSnake[0] % 20 === 19 && direction === 1);
+    const hitLeft = (currentSnake[0] % 20 === 0 && direction=== -1);
+    const hitTop = (currentSnake[0] - 20 < 0 && direction === -20);
+    const hitSelf = squares[currentSnake[0]+direction]?.classList.contains("snake");
+
+    if(hitBottom || hitLeft || hitRight || hitSelf || hitTop){
+        return endGame();
+
+        }
+
+    squares[currentSnake[0]].classList.remove("head");
+
+    const tail = currentSnake.pop();
+    squares[tail].classList.remove("snake");
+    const newHead = currentSnake[0] + direction;
+    currentSnake.unshift(newHead);
+    squares[newHead].classList.add("snake");
+    squares[newHead].classList.add("head")
+
+    if (squares[newHead].classList.contains("apple")) {
+        squares[newHead].classList.remove("apple");
+        squares[tail].classList.add("snake");
+        currentSnake.push(tail);
+        score++; 
+        scoreDisplay.textContent = score;
+        generApple();
+
+    }
+
 }
 
 function changeDir(inputedDir){
     if (direction + inputedDir !== 0){
-        direction = inputedDir;
+        nextDirection = inputedDir;
     }
 }
 
 document.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowUp" ) changeDir(-20);
+    if (e.key === "ArrowDown" ) changeDir(20);
+    if (e.key === "ArrowLeft" ) changeDir(-1);
+    if (e.key === "ArrowRight" ) changeDir(1);
     if (e.key === "w" ) changeDir(-20);
     if (e.key === "s" ) changeDir(20);
     if (e.key === "a" ) changeDir(-1);
     if (e.key === "d" ) changeDir(1);
 });
 
-setInterval(move,200);
+startGame();
