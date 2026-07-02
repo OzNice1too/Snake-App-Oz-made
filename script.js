@@ -9,6 +9,16 @@ let timerId=0;
 let intervelTime=200;
 let nextDirection=1;
 let gameOn = false;
+const highScoreDisplay = document.getElementById("high-score");
+
+let highScore = localStorage.getItem("snakeHighScore");
+
+if (highScore === null) {
+    highScore = 0;
+}
+
+highScore = Number(highScore);
+highScoreDisplay.textContent = highScore;
 
 function createBoard(){
     for(let i=0; i<400;i++){
@@ -62,12 +72,20 @@ function startGame(){
     timerId = setInterval(move,intervelTime);
 }
 
-function endGame(){
-    
+function endGame() {
+
     clearInterval(timerId);
-    nextDirection=1;
+    nextDirection = 1;
+
+    if (score > highScore) {
+        highScore = score;
+        localStorage.setItem("snakeHighScore", highScore);
+        highScoreDisplay.textContent = highScore;
+    }
+
     playEndS();
 }
+
 function generApple(){
     do{
         appleIndex = Math.floor(Math.random()*squares.length);}
