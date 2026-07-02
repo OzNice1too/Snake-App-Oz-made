@@ -13,9 +13,7 @@ body{
     min-height: 100dvh;
 
     color: #A8D5BA;
-    overflow-x: hidden;
-    overflow-y: hidden;
-    padding: 20px 0;
+    overflow: hidden;
     touch-action: none;
 }
 
