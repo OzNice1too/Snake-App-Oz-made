@@ -73,6 +73,26 @@ function generApple(){
 }
 
 function move(){
+    document.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowUp" ) changeDir(-20);
+    if (e.key === "ArrowDown" ) changeDir(20);
+    if (e.key === "ArrowLeft" ) changeDir(-1);
+    if (e.key === "ArrowRight" ) changeDir(1);
+    if (e.key === "w" ) changeDir(-20);
+    if (e.key === "s" ) changeDir(20);
+    if (e.key === "a" ) changeDir(-1);
+    if (e.key === "d" ) changeDir(1);
+});
+
+    document.addEventListener("touchstart", e => {
+        touchStartX=e.changedTouches[0].screenX;
+        touchStartY=e.changedTouches[0].screenY;
+    }, false)
+    document.addEventListener("touchend", e => {
+        touchEndX=e.changedTouches[0].screenX;
+        touchEndY=e.changedTouches[0].screenY;
+        handleSwipe();
+    }, false);
     direction=nextDirection;
     const hitBottom = (currentSnake[0] + 20 >= 400 && direction === 20);
     const hitRight = (currentSnake[0] % 20 === 19 && direction === 1);
@@ -133,24 +153,4 @@ function handleSwipe(){
     }
 }
 
-document.addEventListener("keydown", (e) => {
-    if (e.key === "ArrowUp" ) changeDir(-20);
-    if (e.key === "ArrowDown" ) changeDir(20);
-    if (e.key === "ArrowLeft" ) changeDir(-1);
-    if (e.key === "ArrowRight" ) changeDir(1);
-    if (e.key === "w" ) changeDir(-20);
-    if (e.key === "s" ) changeDir(20);
-    if (e.key === "a" ) changeDir(-1);
-    if (e.key === "d" ) changeDir(1);
-});
-
-document.addEventListener("touchstart", e => {
-        touchStartX=e.changedTouches[0].screenX;
-        touchStartY=e.changedTouches[0].screenY;
-    }, false)
-    document.addEventListener("touchend", e => {
-        touchEndX=e.changedTouches[0].screenX;
-        touchEndY=e.changedTouches[0].screenY;
-        handleSwipe();
-    }, false);
 startGame();
