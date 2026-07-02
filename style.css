@@ -5,7 +5,9 @@ body{
     font-family: sans-serif;
     align-items: center;
     height: 100vh;
-    color: #ffffff;
+    color: #69c069;
+    overflow: hidden;
+    touch-action: none;
 
 }
 
@@ -16,11 +18,11 @@ body{
     display: grid;
     grid-template-columns:repeat(20,1fr);
     border: 5px solid rgb(100, 100, 100);
-    background-color: #ffffff;
+    background-color: #69c069;
 }
 
 .gameContainer{
-    background-color: #83d37c;
+    background-color: #b5cde7;
     padding: 20px;
     border-radius: 20px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.1);
