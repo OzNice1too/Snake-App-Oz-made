@@ -31,7 +31,7 @@ createBoard();
 
 const eatSound = new Audio('Assests/eat.mp3');
 const endSound = new Audio("Assests/end.mp3");
-const bgMusic = new Audio("Assests/loop1.mp3");
+const bgMusic = new Audio("Assests/loop3.mp3");
 
 
 function playEatS(){
