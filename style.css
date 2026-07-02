@@ -4,7 +4,7 @@ body{
     justify-content: center;
     font-family: sans-serif;
     align-items: center;
-    height: 100vh;
+    min-height: 100dvh;
     color: #69c069;
     overflow: hidden;
     touch-action: none;
@@ -12,11 +12,14 @@ body{
 }
 
 #grid{
-    width: 500px;
-    height: 500px;
+    width: min(90vw, 500px);
+    height: min(90vw, 500px);
+
     margin: 20px auto;
     display: grid;
-    grid-template-columns:repeat(20,1fr);
+    grid-template-columns: repeat(20, 1fr);
+    grid-template-rows: repeat(20, 1fr);
+
     border: 5px solid rgb(100, 100, 100);
     background-color: #69c069;
 }

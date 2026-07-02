@@ -44,6 +44,9 @@ function bgPlaymusic() {
     bgMusic.play();
 }
 
+function stopBgMusic(){
+    bgMusic.pause();
+}
 function startGame(){
     clearInterval(timerId);
     direction=nextDirection;
