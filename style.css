@@ -5,7 +5,7 @@ body{
     font-family: sans-serif;
     align-items: center;
     height: 100vh;
-    color: #d2e0e0;
+    color: #ffffff;
 
 }
 
@@ -16,7 +16,7 @@ body{
     display: grid;
     grid-template-columns:repeat(20,1fr);
     border: 5px solid rgb(100, 100, 100);
-    background-color: #8cdada;
+    background-color: #ffffff;
 }
 
 .gameContainer{

@@ -21,7 +21,7 @@ createBoard();
 
 const eatSound = new Audio('Assests/eat.mp3');
 const endSound = new Audio("Assests/end.mp3");
-const bgMusic = new Audio("Assests/loop2.mp3");
+const bgMusic = new Audio("Assests/loop1.mp3");
 
 
 function playEatS(){
@@ -84,15 +84,6 @@ function move(){
     if (e.key === "d" ) changeDir(1);
 });
 
-    document.addEventListener("touchstart", e => {
-        touchStartX=e.changedTouches[0].screenX;
-        touchStartY=e.changedTouches[0].screenY;
-    }, false)
-    document.addEventListener("touchend", e => {
-        touchEndX=e.changedTouches[0].screenX;
-        touchEndY=e.changedTouches[0].screenY;
-        handleSwipe();
-    }, false);
     direction=nextDirection;
     const hitBottom = (currentSnake[0] + 20 >= 400 && direction === 20);
     const hitRight = (currentSnake[0] % 20 === 19 && direction === 1);
@@ -134,6 +125,21 @@ function changeDir(inputedDir){
     }
 }
 
+let touchStartX = 0;
+let touchStartY = 0;
+let touchEndX = 0;
+let touchEndY = 0;
+
+document.addEventListener("touchstart", (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+    touchStartY = e.changedTouches[0].screenY;
+}, { passive: true });
+
+document.addEventListener("touchend", (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    touchEndY = e.changedTouches[0].screenY;
+    handleSwipe();
+}, { passive: true });
 
 function handleSwipe(){
     const dx = touchStartX - touchEndX;
