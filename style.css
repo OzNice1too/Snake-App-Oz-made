@@ -18,41 +18,137 @@ body{
 }
 
 #grid{
-    width: min(90vw, 500px);
-    height: min(90vw, 500px);
+    width: min(90vw, 520px);
+    height: min(90vw, 520px);
 
     margin: 20px auto;
+
     display: grid;
     grid-template-columns: repeat(20, 1fr);
     grid-template-rows: repeat(20, 1fr);
 
-    border-radius: 14px;
+    position: relative;
+    overflow: hidden;
 
-    border: 2px solid rgba(134, 239, 172, 0.25);
+    border-radius: 20px;
+    border: 3px solid rgba(72, 255, 154, 0.35);
 
-    background: linear-gradient(
-        135deg,
-        #06130c 0%,
-        #0b2a1a 45%,
-        #14532d 100%
-    );
+    background:
+        linear-gradient(
+            145deg,
+            #05110a 0%,
+            #0b2415 45%,
+            #124427 100%
+        );
+
+    background-image:
+        linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px),
+        linear-gradient(145deg,#05110a,#124427);
+
+    background-size:
+        calc(100% / 20) calc(100% / 20),
+        calc(100% / 20) calc(100% / 20),
+        cover;
 
     box-shadow:
-        0 18px 45px rgba(0,0,0,0.55),
-        inset 0 0 30px rgba(34, 197, 94, 0.10),
-        inset 0 0 80px rgba(134, 239, 172, 0.05);
+        0 0 18px rgba(34,197,94,.35),
+        0 25px 50px rgba(0,0,0,.65),
+        inset 0 0 40px rgba(72,255,154,.08),
+        inset 0 0 120px rgba(0,0,0,.45);
+}
 
-    opacity: 0.95;
+#grid::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at 30% 20%,
+            rgba(255,255,255,.08),
+            transparent 50%
+        );
+
+    pointer-events: none;
+}
+
+#grid::after{
+    content: "";
+    position: absolute;
+    inset: -3px;
+
+    border-radius: 22px;
+
+    box-shadow:
+        0 0 30px rgba(72,255,154,.18);
+
+    pointer-events: none;
 }
 
 .gameContainer{
-    background: rgba(15, 23, 42, 0.75);
-    padding: 20px;
-    border-radius: 20px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    position: relative;
+    overflow: hidden;
+
+    padding: 22px 28px;
     text-align: center;
-    opacity: 0.95;
-    border: 1px solid rgba(148, 163, 184, 0.25);
+
+    border-radius: 20px;
+
+    background: linear-gradient(
+        145deg,
+        rgba(15,23,42,0.92),
+        rgba(30,41,59,0.88),
+        rgba(51,65,85,0.82)
+    );
+
+    border: 1px solid rgba(148,163,184,0.25);
+
+    backdrop-filter: blur(12px);
+
+    box-shadow:
+        0 15px 35px rgba(0,0,0,0.45),
+        inset 0 1px 0 rgba(255,255,255,0.08),
+        inset 0 -20px 40px rgba(0,0,0,0.18);
+
+    transition: all .3s ease;
+    opacity: 0.9;
+}
+
+.gameContainer:hover{
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 20px 45px rgba(0,0,0,0.55),
+        0 0 30px rgba(96,165,250,0.18),
+        inset 0 1px 0 rgba(255,255,255,0.10);
+}
+
+.gameContainer::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at top,
+            rgba(255,255,255,0.10),
+            transparent 60%
+        );
+
+    pointer-events: none;
+}
+
+.gameContainer::after{
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: 22px;
+
+    box-shadow:
+        0 0 35px rgba(255,255,255,0.04);
+
+    pointer-events: none;
 }
 
 h2{
@@ -73,10 +169,24 @@ h2{
     color: #CDEFFF;
 }
 
-.snake{ background-color: #3b82f6; border-radius: 3px;}
-.apple{ color: #EC6530;background-color:  rgb(211, 44, 44); border-radius: 50%
+.snake{
+    background: linear-gradient(135deg, #5eead4, #2563eb);
+    border-radius: 6px;
+    box-shadow: 0 0 8px rgba(59,130,246,.5);
 }
-.head{background-color: #22c55e;}
+
+.apple{
+    background: radial-gradient(circle, #ff8b5c, #dc2626);
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(239,68,68,.8);
+}
+
+.head{
+    background: linear-gradient(135deg, #86efac, #22c55e);
+    border-radius: 8px;
+    box-shadow: 0 0 12px rgba(34,197,94,.8);
+}
+
 
 .controls{margin: 15px 0; vertical-align: middle;}
 .arrow {

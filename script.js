@@ -49,7 +49,7 @@ function playEndS(){
 function bgPlaymusic() {
 
     bgMusic.loop = true;
-    bgMusic.volume = 0.2;
+    bgMusic.volume = 0.35;
 
     bgMusic.play();
 }
