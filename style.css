@@ -10,10 +10,12 @@ body{
     justify-content: center;
     font-family: sans-serif;
     align-items: center;
-    min-height: 100vh;
+    min-height: 100dvh;
 
     color: #A8D5BA;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 20px 0;
     touch-action: none;
 }
 
