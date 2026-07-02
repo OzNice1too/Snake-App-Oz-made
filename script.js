@@ -21,7 +21,7 @@ createBoard();
 
 const eatSound = new Audio('Assests/eat.mp3');
 const endSound = new Audio("Assests/end.mp3");
-const bgMusic = new Audio("Assests/loop8.mp3");
+const bgMusic = new Audio("Assests/loop2.mp3");
 
 
 function playEatS(){
@@ -36,11 +36,12 @@ function playEndS(){
 }
 
 
-function bgPlaymusic(){
-    bgMusic.play();
+function bgPlaymusic() {
+
     bgMusic.loop = true;
     bgMusic.volume = 0.2;
-    
+
+    bgMusic.play();
 }
 
 function startGame(){
@@ -101,17 +102,9 @@ function move(){
         scoreDisplay.textContent = score;
         generApple();
         playEatS();
-    document.addEventListener("touchstart", e => {
-        touchStartX=e.changedTouches[0].screenX;
-        touchStartY=e.changedTouches[0].screenY;
-    }, false)
-    document.addEventListener("touchend", e => {
-        touchEndX=e.changedTouches[0].screenX;
-        touchEndY=e.changedTouches[0].screenY;
-        handleSwipe();
-    }, false);
 
     }
+    
 
 }
 
@@ -135,7 +128,7 @@ function handleSwipe(){
             else  changeDir(1);
         } else{
             if(dy>0) changeDir(-20);
-            else changeDir(20)
+            else changeDir(20);
         }
     }
 }
@@ -150,4 +143,14 @@ document.addEventListener("keydown", (e) => {
     if (e.key === "a" ) changeDir(-1);
     if (e.key === "d" ) changeDir(1);
 });
+
+document.addEventListener("touchstart", e => {
+        touchStartX=e.changedTouches[0].screenX;
+        touchStartY=e.changedTouches[0].screenY;
+    }, false)
+    document.addEventListener("touchend", e => {
+        touchEndX=e.changedTouches[0].screenX;
+        touchEndY=e.changedTouches[0].screenY;
+        handleSwipe();
+    }, false);
 startGame();
