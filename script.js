@@ -1,14 +1,14 @@
 const grid=document.getElementById("grid");
 const scoreDisplay=document.getElementById("score");
 let squares=[];
-let currentSnake=[0,1,2]
+let currentSnake=[0,1,2];
 let direction=1;
 let appleIndex=0;
 let score=0;
 let timerId=0;
 let intervelTime=200;
 let nextDirection=1;
-let gameOn = false
+let gameOn = false;
 
 function createBoard(){
     for(let i=0; i<400;i++){
@@ -17,11 +17,34 @@ function createBoard(){
         squares.push(square);
     }
 }
-createBoard()
+createBoard();
 
+const eatSound = new Audio('Assests/eat.mp3');
+const endSound = new Audio("Assests/end.mp3");
+const bgMusic = new Audio("Assests/loop8.mp3");
+
+
+function playEatS(){
+    eatSound.currentTime = 0;
+    eatSound.play();
+}
+
+function playEndS(){
+    bgMusic.pause();
+    endSound.volume = 0.4
+    endSound.play();
+}
+
+
+function bgPlaymusic(){
+    bgMusic.play();
+    bgMusic.loop = true;
+    bgMusic.volume = 0.2;
+    
+}
 
 function startGame(){
-    clearInterval(timerId)
+    clearInterval(timerId);
     direction=nextDirection;
     currentSnake.forEach(index => squares[index].classList.remove("snake"));
     currentSnake.forEach(index => squares[index].classList.remove("head"));
@@ -36,10 +59,11 @@ function startGame(){
 }
 
 function endGame(){
-    clearInterval(timerId)
-    nextDirection=1
+    
+    clearInterval(timerId);
+    nextDirection=1;
+    playEndS();
 }
-
 function generApple(){
     do{
         appleIndex = Math.floor(Math.random()*squares.length);}
@@ -48,7 +72,7 @@ function generApple(){
 }
 
 function move(){
-    direction=nextDirection
+    direction=nextDirection;
     const hitBottom = (currentSnake[0] + 20 >= 400 && direction === 20);
     const hitRight = (currentSnake[0] % 20 === 19 && direction === 1);
     const hitLeft = (currentSnake[0] % 20 === 0 && direction=== -1);
@@ -67,7 +91,7 @@ function move(){
     const newHead = currentSnake[0] + direction;
     currentSnake.unshift(newHead);
     squares[newHead].classList.add("snake");
-    squares[newHead].classList.add("head")
+    squares[newHead].classList.add("head");
 
     if (squares[newHead].classList.contains("apple")) {
         squares[newHead].classList.remove("apple");
@@ -76,6 +100,7 @@ function move(){
         score++; 
         scoreDisplay.textContent = score;
         generApple();
+        playEatS();
     document.addEventListener("touchstart", e => {
         touchStartX=e.changedTouches[0].screenX;
         touchStartY=e.changedTouches[0].screenY;
@@ -83,8 +108,8 @@ function move(){
     document.addEventListener("touchend", e => {
         touchEndX=e.changedTouches[0].screenX;
         touchEndY=e.changedTouches[0].screenY;
-        handleSwipe()
-    }, false)
+        handleSwipe();
+    }, false);
 
     }
 
@@ -125,5 +150,4 @@ document.addEventListener("keydown", (e) => {
     if (e.key === "a" ) changeDir(-1);
     if (e.key === "d" ) changeDir(1);
 });
-
 startGame();

@@ -4,14 +4,20 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width">
         <title>משחק נחש יאס"א</title>
+        <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <link rel="manifest" href="/site.json" />
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
         <div class="gameContainer">
-            <h2 style="text-align: center;"Centered Heading;></h2>score:<span id="score">0</span></h2>
+            <h2 style="text-align: center;"Centered Heading;>score:<span id="score">0</span></h2>
             <div id="grid"></div>
             <button class="arrow" onclick="startGame()">Start Game</button>
             <button class="arrow" onclick="endGame()">End Game</button>
+            <button class="arrow" onclick="bgPlaymusic()">Start Music</button>
         </div>
         <script src="script.js"></script>
     </body>

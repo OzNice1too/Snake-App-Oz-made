@@ -1,11 +1,11 @@
 body{
+    background-image: url(Assests/Background_snake.png);
     display: flex;
     justify-content: center;
     font-family: sans-serif;
     align-items: center;
     height: 100vh;
-    background-color: #FFF7C5;
-    color: #B0BA99;
+    color: #d2e0e0;
 
 }
 
@@ -16,25 +16,30 @@ body{
     display: grid;
     grid-template-columns:repeat(20,1fr);
     border: 5px solid rgb(100, 100, 100);
-    background-color: #d2e0e0;
+    background-color: #8cdada;
 }
 
 .gameContainer{
-    background-color: #C7E6F3;
+    background-color: #83d37c;
     padding: 20px;
     border-radius: 20px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.1);
     text-align: center;
+    opacity: 0.9;
 }
 
 h2{
-    font-size: 65px;
+    font-size: 36px;
+    color: #000000;
 }
 
 #grid div{
     border: 0.1px solid ;
 }
 
+#score{
+    color: #000000;
+}
 
 .snake{ background-color:#3E3BF9; border-radius: 3px;}
 .apple{ color: #EC6530;background-color:  rgb(211, 44, 44); border-radius: 50%
